@@ -17,11 +17,35 @@ class BottomArea extends StatelessWidget {
             children: [
               ElevatedButton(
                   onPressed: () {
-                    // bool isInteger(num value) => (value % 1) == 0;
-                    // print(isInteger(10.0));
-                    // while (isInteger(10.2)) {
-                    //   print("dsdsd");
-                    // }
+                    showDialog<String>(
+                      context: context,
+                      builder: (BuildContext context) => AlertDialog(
+                        title: Text('Answer is'),
+                        content: Container(
+                          height: 60,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text("Your answer is wrong "),
+                              Padding(
+                                padding: EdgeInsets.only(top: 18.0),
+                                child: Text("Correct answer is : 50 "),
+                              )
+                            ],
+                          ),
+                        ),
+                        actions: <Widget>[
+                          // TextButton(
+                          //   onPressed: () => Navigator.pop(context, 'Cancel'),
+                          //   child: const Text('Cancel'),
+                          // ),
+                          TextButton(
+                            onPressed: () => Navigator.pop(context, 'Ok'),
+                            child: const Text('Ok'),
+                          ),
+                        ],
+                      ),
+                    );
                   },
                   child: Container(
                     alignment: Alignment.center,
@@ -40,7 +64,7 @@ class BottomArea extends StatelessWidget {
                     width: contextWidth / 6,
                     height: contextHight / 10,
                     child: Text(
-                      "20",
+                      "33",
                       style: TextStyle(fontSize: 30),
                     ),
                   )),
@@ -52,7 +76,7 @@ class BottomArea extends StatelessWidget {
                     width: contextWidth / 6,
                     height: contextHight / 10,
                     child: Text(
-                      "20",
+                      "50",
                       style: TextStyle(fontSize: 30),
                     ),
                   ))
@@ -68,7 +92,7 @@ class BottomArea extends StatelessWidget {
                   width: contextWidth / 6,
                   height: contextHight / 10,
                   child: Text(
-                    "20",
+                    "67",
                     style: TextStyle(fontSize: 30),
                   ),
                 )),
@@ -80,7 +104,7 @@ class BottomArea extends StatelessWidget {
                   width: contextWidth / 6,
                   height: contextHight / 10,
                   child: Text(
-                    "20",
+                    "48",
                     style: TextStyle(fontSize: 30),
                   ),
                 )),
@@ -92,7 +116,7 @@ class BottomArea extends StatelessWidget {
                   width: contextWidth / 6,
                   height: contextHight / 10,
                   child: Text(
-                    "20",
+                    "76",
                     style: TextStyle(fontSize: 30),
                   ),
                 ))

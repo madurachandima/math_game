@@ -14,9 +14,15 @@ class Home extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("Math for FUN"),
+        // iconTheme: IconThemeData(color: Colors.black54),
+        title: Text(
+          "Math for FUN",
+          style: TextStyle(color: Colors.black54),
+        ),
         centerTitle: true,
         elevation: 0,
+        backgroundColor: Colors.white,
+        foregroundColor: Colors.black54,
         actions: [
           IconButton(
               onPressed: () {
@@ -25,12 +31,16 @@ class Home extends StatelessWidget {
                   builder: (BuildContext context) => AlertDialog(
                     title: Text('Update Player Information'),
                     content: Container(
-                      height: 80,
+                      height: 120,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text("Player Name : "),
                           TextField(),
+                          Padding(
+                            padding: EdgeInsets.only(top: 18.0),
+                            child: Text("Your Best Score : 200 "),
+                          )
                         ],
                       ),
                     ),
@@ -47,16 +57,22 @@ class Home extends StatelessWidget {
                   ),
                 );
               },
-              icon: Icon(Icons.settings))
+              icon: Icon(
+                Icons.settings,
+                color: Colors.black54,
+              ))
         ],
       ),
       body: Padding(
         padding: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
         child: SingleChildScrollView(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [ScoreArea(), ViewArea(), BottomArea()],
+          child: Container(
+            color: Colors.white,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [ScoreArea(), ViewArea(), BottomArea()],
+            ),
           ),
         ),
       ),
