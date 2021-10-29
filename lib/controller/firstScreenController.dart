@@ -1,3 +1,3 @@
-import 'package:get/get.dart';
+// import 'package:get/get.dart';
 
-class FirstScreenController extends GetxController {}
+// class FirstScreenController extends GetxController {}

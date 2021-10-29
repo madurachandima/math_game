@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:math_game/const/assetsPath.dart';
-import 'package:math_game/controller/firstScreenController.dart';
 import 'package:math_game/screens/home.dart';
 
 class FirstScreen extends StatelessWidget {
@@ -9,8 +8,6 @@ class FirstScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    FirstScreenController firstScreenController =
-        Get.put(FirstScreenController());
     return Scaffold(
       appBar: AppBar(
         elevation: 0,

@@ -13,6 +13,7 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       // title: 'Flutter Demo',
       // theme: ThemeData(),
+      color: Colors.white,
       debugShowCheckedModeBanner: false,
       home: FirstScreen(),
     );

@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:math_game/controller/homeController.dart';
+import 'package:math_game/screens/widgets/currect_answer_dialogbox.dart';
+import 'package:math_game/screens/widgets/wrong_answer_dialogbox.dart';
 
 class BottomArea extends StatelessWidget {
   const BottomArea({Key? key}) : super(key: key);
@@ -7,6 +11,8 @@ class BottomArea extends StatelessWidget {
   Widget build(BuildContext context) {
     var contextHight = MediaQuery.of(context).size.height;
     var contextWidth = MediaQuery.of(context).size.width;
+    HomeController _controller = Get.find();
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.center,
@@ -15,36 +21,14 @@ class BottomArea extends StatelessWidget {
           padding: EdgeInsets.only(bottom: 18),
           child: Row(
             children: [
-              ElevatedButton(
+              Obx(() => ElevatedButton(
                   onPressed: () {
                     showDialog<String>(
                       context: context,
-                      builder: (BuildContext context) => AlertDialog(
-                        title: Text('Answer is'),
-                        content: Container(
-                          height: 60,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text("Your answer is wrong "),
-                              Padding(
-                                padding: EdgeInsets.only(top: 18.0),
-                                child: Text("Correct answer is : 50 "),
-                              )
-                            ],
-                          ),
-                        ),
-                        actions: <Widget>[
-                          // TextButton(
-                          //   onPressed: () => Navigator.pop(context, 'Cancel'),
-                          //   child: const Text('Cancel'),
-                          // ),
-                          TextButton(
-                            onPressed: () => Navigator.pop(context, 'Ok'),
-                            child: const Text('Ok'),
-                          ),
-                        ],
-                      ),
+                      builder: (BuildContext context) =>
+                          _controller.checkAnswer(_controller.numbers[0])
+                              ? CurrectAnswerDialogBox()
+                              : WrongAnswerDialogBox(),
                     );
                   },
                   child: Container(
@@ -52,73 +36,113 @@ class BottomArea extends StatelessWidget {
                     width: contextWidth / 6,
                     height: contextHight / 10,
                     child: Text(
-                      "20",
+                      _controller.numbers[0].toString(),
                       style: TextStyle(fontSize: 30),
                     ),
-                  )),
+                  ))),
               Spacer(),
-              ElevatedButton(
-                  onPressed: () {},
+              Obx(() => ElevatedButton(
+                  onPressed: () {
+                    showDialog<String>(
+                      context: context,
+                      builder: (BuildContext context) =>
+                          _controller.checkAnswer(_controller.numbers[1])
+                              ? CurrectAnswerDialogBox()
+                              : WrongAnswerDialogBox(),
+                    );
+                  },
                   child: Container(
                     alignment: Alignment.center,
                     width: contextWidth / 6,
                     height: contextHight / 10,
                     child: Text(
-                      "33",
+                      _controller.numbers[1].toString(),
                       style: TextStyle(fontSize: 30),
                     ),
-                  )),
+                  ))),
               Spacer(),
-              ElevatedButton(
-                  onPressed: () {},
-                  child: Container(
-                    alignment: Alignment.center,
-                    width: contextWidth / 6,
-                    height: contextHight / 10,
-                    child: Text(
-                      "50",
-                      style: TextStyle(fontSize: 30),
-                    ),
+              Obx(() => ElevatedButton(
+                    onPressed: () {
+                      showDialog<String>(
+                        context: context,
+                        builder: (BuildContext context) =>
+                            _controller.checkAnswer(_controller.numbers[2])
+                                ? CurrectAnswerDialogBox()
+                                : WrongAnswerDialogBox(),
+                      );
+                    },
+                    child: Container(
+                        alignment: Alignment.center,
+                        width: contextWidth / 6,
+                        height: contextHight / 10,
+                        child: Text(
+                          _controller.numbers[2].toString(),
+                          style: TextStyle(fontSize: 30),
+                        )),
                   ))
             ],
           ),
         ),
         Row(
           children: [
-            ElevatedButton(
-                onPressed: () {},
-                child: Container(
-                  alignment: Alignment.center,
-                  width: contextWidth / 6,
-                  height: contextHight / 10,
-                  child: Text(
-                    "67",
-                    style: TextStyle(fontSize: 30),
-                  ),
+            Obx(() => ElevatedButton(
+                  onPressed: () {
+                    showDialog<String>(
+                      context: context,
+                      builder: (BuildContext context) =>
+                          _controller.checkAnswer(_controller.numbers[3])
+                              ? CurrectAnswerDialogBox()
+                              : WrongAnswerDialogBox(),
+                    );
+                  },
+                  child: Container(
+                      alignment: Alignment.center,
+                      width: contextWidth / 6,
+                      height: contextHight / 10,
+                      child: Text(
+                        _controller.numbers[3].toString(),
+                        style: TextStyle(fontSize: 30),
+                      )),
                 )),
             Spacer(),
-            ElevatedButton(
-                onPressed: () {},
+            Obx(() => ElevatedButton(
+                onPressed: () {
+                  showDialog<String>(
+                    context: context,
+                    builder: (BuildContext context) =>
+                        _controller.checkAnswer(_controller.numbers[4])
+                            ? CurrectAnswerDialogBox()
+                            : WrongAnswerDialogBox(),
+                  );
+                },
                 child: Container(
                   alignment: Alignment.center,
                   width: contextWidth / 6,
                   height: contextHight / 10,
                   child: Text(
-                    "48",
+                    _controller.numbers[4].toString(),
                     style: TextStyle(fontSize: 30),
                   ),
-                )),
+                ))),
             Spacer(),
-            ElevatedButton(
-                onPressed: () {},
-                child: Container(
-                  alignment: Alignment.center,
-                  width: contextWidth / 6,
-                  height: contextHight / 10,
-                  child: Text(
-                    "76",
-                    style: TextStyle(fontSize: 30),
-                  ),
+            Obx(() => ElevatedButton(
+                  onPressed: () {
+                    showDialog<String>(
+                      context: context,
+                      builder: (BuildContext context) =>
+                          _controller.checkAnswer(_controller.numbers[5])
+                              ? CurrectAnswerDialogBox()
+                              : WrongAnswerDialogBox(),
+                    );
+                  },
+                  child: Container(
+                      alignment: Alignment.center,
+                      width: contextWidth / 6,
+                      height: contextHight / 10,
+                      child: Text(
+                        _controller.numbers[5].toString(),
+                        style: TextStyle(fontSize: 30),
+                      )),
                 ))
           ],
         ),

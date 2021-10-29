@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:math_game/controller/homeController.dart';
 
 class ViewArea extends StatelessWidget {
   const ViewArea({Key? key}) : super(key: key);
@@ -7,6 +9,7 @@ class ViewArea extends StatelessWidget {
   Widget build(BuildContext context) {
     var contextHight = MediaQuery.of(context).size.height;
     var contextWidth = MediaQuery.of(context).size.width;
+    HomeController controller = Get.find();
     return Container(
       height: contextHight / 2.1,
       width: contextWidth,
@@ -20,30 +23,32 @@ class ViewArea extends StatelessWidget {
             children: [
               Expanded(
                 flex: 5,
-                child: Text(
-                  "1",
-                  style: TextStyle(
-                    fontSize: 60,
-                    fontWeight: FontWeight.bold,
-                  ),
-                  textAlign: TextAlign.center,
-                ),
+                child: Obx(() => Text(
+                      controller.uiValue1.value.toString(),
+                      style: TextStyle(
+                        fontSize: 60,
+                        fontWeight: FontWeight.bold,
+                      ),
+                      textAlign: TextAlign.center,
+                    )),
               ),
               Expanded(
                 flex: 5,
-                child: Text(
-                  "x",
-                  style: TextStyle(fontSize: 60, fontWeight: FontWeight.bold),
-                  textAlign: TextAlign.center,
-                ),
+                child: Obx(() => Text(
+                      controller.operater.value.toString(),
+                      style:
+                          TextStyle(fontSize: 60, fontWeight: FontWeight.bold),
+                      textAlign: TextAlign.center,
+                    )),
               ),
               Expanded(
                 flex: 5,
-                child: Text(
-                  "50",
-                  style: TextStyle(fontSize: 60, fontWeight: FontWeight.bold),
-                  textAlign: TextAlign.center,
-                ),
+                child: Obx(() => Text(
+                      controller.uiValue2.value.toString(),
+                      style:
+                          TextStyle(fontSize: 60, fontWeight: FontWeight.bold),
+                      textAlign: TextAlign.center,
+                    )),
               )
             ],
           ),

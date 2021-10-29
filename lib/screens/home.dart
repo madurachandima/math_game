@@ -10,7 +10,7 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    HomeController homeVontroller = Get.put(HomeController());
+    Get.lazyPut(() => HomeController());
 
     return Scaffold(
       appBar: AppBar(
@@ -63,16 +63,14 @@ class Home extends StatelessWidget {
               ))
         ],
       ),
-      body: Padding(
-        padding: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
-        child: SingleChildScrollView(
-          child: Container(
-            color: Colors.white,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [ScoreArea(), ViewArea(), BottomArea()],
-            ),
+      body: SingleChildScrollView(
+        child: Container(
+          color: Colors.white,
+          padding: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [ScoreArea(), ViewArea(), BottomArea()],
           ),
         ),
       ),

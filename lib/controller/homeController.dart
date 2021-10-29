@@ -1,15 +1,15 @@
-import 'dart:math';
-
 import 'package:get/get.dart';
 import 'package:math_game/Util.dart';
 import 'package:math_game/Methods.dart';
+import 'package:math_game/business/Operater.dart';
+import 'package:math_game/model/ResultModel.dart';
 
 class HomeController extends GetxController implements Methods {
   var operaters = ["-", "/", "+", "x"];
   var numbers = [].obs;
   var operater = "".obs;
-  var value1 = 0.obs;
-  var value2 = 0.obs;
+  var uiValue1 = 0.obs;
+  var uiValue2 = 0.obs;
   var answer = 0.obs;
 
   @override
@@ -19,75 +19,61 @@ class HomeController extends GetxController implements Methods {
   }
 
   @override
-  calculate() {
+  calculate() async {
     var randValue1 = new Utills().generateRandomNumner(11, 110);
     var randValue2 = new Utills().generateRandomNumner(10, 150);
-    var operrator =
+    operaters.shuffle();
+    operater.value =
         operaters.elementAt(new Utills().generateRandomNumner(0, 3));
 
-    // var randValue1 = 3;
-    // var randValue2 = 10;
-    // var operrator = "-";
-
-    print("operator $operrator");
-    // print("Value 1 $randValue1" + "value 2 $randValue2");
-
-    switch (operrator) {
+    switch (operater.value) {
       case "-":
-        if (randValue1 > randValue2) {
-          answer.value = randValue1 - randValue2;
-          createAnswersArray();
-          print("answer - 1 ${answer.value}");
-        } else {
-          while (randValue1 < randValue2) {
-            randValue1 = new Utills().generateRandomNumner(20, 99);
-            randValue2 = new Utills().generateRandomNumner(32, 76);
-          }
-
-          if (randValue1 > randValue2) {
-            print("Value 1 $randValue1" + "value 2 $randValue2");
-            answer.value = randValue1 - randValue2;
-            createAnswersArray();
-            print("answer - 2${answer.value}");
-          }
+        try {
+          ResultModel resultModel =
+              Operater().subtraction(randValue1, randValue2);
+          answer.value = resultModel.answer;
+          setUiValues(resultModel.uiValue1, resultModel.uiValue2);
+          await createAnswersArray();
+        } catch (e) {
+          print("-------$e");
         }
+
         break;
 
       case "+":
-        answer.value = randValue1 + randValue2;
-        createAnswersArray();
-        print("answer + ${answer.value}");
+        try {
+          ResultModel resultModel = Operater().addition(randValue1, randValue2);
+          answer.value = resultModel.answer;
+          setUiValues(resultModel.uiValue1, resultModel.uiValue2);
+          await createAnswersArray();
+        } catch (e) {
+          print("++++++$e");
+        }
+
         break;
 
       case "/":
-        var a;
-        a = randValue1 / randValue2;
-        print(a);
-        bool isInteger(num value) => (value % 1) == 0;
-
-        if (isInteger(a)) {
-          answer.value = a.toInt();
-          createAnswersArray();
-          print("answer / 1 ${answer.value}");
-        } else {
-          while (!isInteger(a)) {
-            randValue1 = new Utills().generateRandomNumner(45, 145);
-            randValue2 = new Utills().generateRandomNumner(32, 123);
-            a = randValue1 / randValue2;
-          }
-          if (isInteger(a)) {
-            print("Value 1 $randValue1" + "value 2 $randValue2");
-            answer.value = a.toInt();
-            createAnswersArray();
-            print("answer / 2 ${answer.value}");
-          }
+        try {
+          ResultModel resultModel = Operater().division(randValue1, randValue2);
+          answer.value = resultModel.answer;
+          setUiValues(resultModel.uiValue1, resultModel.uiValue2);
+          await createAnswersArray();
+        } catch (e) {
+          print("/ $e");
         }
         break;
 
       case "x":
-        answer.value = randValue1 * randValue2;
-        print("answer * ${answer.value}");
-        createAnswersArray();
+        try {
+          ResultModel resultModel =
+              Operater().multiplication(randValue1, randValue2);
+          answer.value = resultModel.answer;
+          setUiValues(resultModel.uiValue1, resultModel.uiValue2);
+          await createAnswersArray();
+        } catch (e) {
+          print("xxxxxx $e");
+        }
+
         break;
 
       default:
@@ -95,19 +81,42 @@ class HomeController extends GetxController implements Methods {
   }
 
   @override
-  createAnswersArray() {
+  createAnswersArray() async {
+    numbers.clear();
     var maxValue = answer.value + 10;
-    var minValue = answer.value + 10;
-    print("MaxValue 1 $maxValue" + "Minvalue 2 $maxValue");
+    var minValue = answer.value;
+    print("MaxValue 1 $maxValue" + "Minvalue 2 $minValue");
 
-    for (var i = 0; i < 5; i++) {
-      var number = new Utills().generateRandomNumner(maxValue, minValue);
-      numbers.add(number);
-      numbers.shuffle();
+    for (var i = 0; i < 20; i++) {
+      var number = new Utills().generateRandomNumner(minValue, maxValue);
+      if (number != answer.value) {
+        numbers.add(number);
+      }
     }
 
+    // numbers.shuffle();
+
+    var uniqueList = numbers.toSet().toList();
+    numbers.clear();
+    for (var i = 0; i < 5; i++) {
+      numbers.add(uniqueList[i]);
+    }
     numbers.add(answer.value);
     numbers.shuffle();
     print(numbers);
+  }
+
+  @override
+  setUiValues(value1, value2) {
+    uiValue1.value = value1;
+    uiValue2.value = value2;
+  }
+
+  @override
+  checkAnswer(yourAnswer) {
+    if (yourAnswer == answer.value)
+      return true;
+    else
+      return false;
   }
 }
