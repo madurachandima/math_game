@@ -9,7 +9,7 @@ class CurrectAnswerDialogBox extends StatelessWidget {
   Widget build(BuildContext context) {
     HomeController _controller = Get.find();
     return AlertDialog(
-      title: Text('Answer is correct'),
+      title: Text('Correct Answer'),
       content: Container(
         height: 60,
         child: Column(
@@ -31,9 +31,10 @@ class CurrectAnswerDialogBox extends StatelessWidget {
         TextButton(
           onPressed: () {
             _controller.calculate();
-            Navigator.pop(context, 'Ok');
+            _controller.startTimer();
+            Navigator.pop(context, 'Play again');
           },
-          child: const Text('Ok'),
+          child: const Text('Play again'),
         ),
       ],
     );

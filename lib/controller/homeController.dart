@@ -1,7 +1,9 @@
+import 'dart:async';
+
 import 'package:get/get.dart';
 import 'package:math_game/Util.dart';
-import 'package:math_game/Methods.dart';
-import 'package:math_game/business/Operater.dart';
+import 'package:math_game/interfaces/Imethods.dart';
+import 'package:math_game/business/OperaterImpl.dart';
 import 'package:math_game/model/ResultModel.dart';
 
 class HomeController extends GetxController implements Methods {
@@ -12,25 +14,30 @@ class HomeController extends GetxController implements Methods {
   var uiValue2 = 0.obs;
   var answer = 0.obs;
 
+  late Timer _timer;
+  var start = 10.obs;
+  OperaterImpl opreterImpl = new OperaterImpl();
+  Utills util = new Utills();
+
   @override
   void onInit() {
     calculate();
+    startTimer();
     super.onInit();
   }
 
   @override
   calculate() async {
-    var randValue1 = new Utills().generateRandomNumner(11, 110);
-    var randValue2 = new Utills().generateRandomNumner(10, 150);
+    var randValue1 = util.generateRandomNumner(11, 110);
+    var randValue2 = util.generateRandomNumner(10, 150);
     operaters.shuffle();
-    operater.value =
-        operaters.elementAt(new Utills().generateRandomNumner(0, 3));
+    operater.value = operaters.elementAt(util.generateRandomNumner(0, 3));
 
     switch (operater.value) {
       case "-":
         try {
           ResultModel resultModel =
-              Operater().subtraction(randValue1, randValue2);
+              opreterImpl.subtraction(randValue1, randValue2);
           answer.value = resultModel.answer;
           setUiValues(resultModel.uiValue1, resultModel.uiValue2);
           await createAnswersArray();
@@ -42,7 +49,8 @@ class HomeController extends GetxController implements Methods {
 
       case "+":
         try {
-          ResultModel resultModel = Operater().addition(randValue1, randValue2);
+          ResultModel resultModel =
+              opreterImpl.addition(randValue1, randValue2);
           answer.value = resultModel.answer;
           setUiValues(resultModel.uiValue1, resultModel.uiValue2);
           await createAnswersArray();
@@ -54,7 +62,8 @@ class HomeController extends GetxController implements Methods {
 
       case "/":
         try {
-          ResultModel resultModel = Operater().division(randValue1, randValue2);
+          ResultModel resultModel =
+              opreterImpl.division(randValue1, randValue2);
           answer.value = resultModel.answer;
           setUiValues(resultModel.uiValue1, resultModel.uiValue2);
           await createAnswersArray();
@@ -66,7 +75,7 @@ class HomeController extends GetxController implements Methods {
       case "x":
         try {
           ResultModel resultModel =
-              Operater().multiplication(randValue1, randValue2);
+              opreterImpl.multiplication(randValue1, randValue2);
           answer.value = resultModel.answer;
           setUiValues(resultModel.uiValue1, resultModel.uiValue2);
           await createAnswersArray();
@@ -88,13 +97,11 @@ class HomeController extends GetxController implements Methods {
     print("MaxValue 1 $maxValue" + "Minvalue 2 $minValue");
 
     for (var i = 0; i < 20; i++) {
-      var number = new Utills().generateRandomNumner(minValue, maxValue);
+      var number = util.generateRandomNumner(minValue, maxValue);
       if (number != answer.value) {
         numbers.add(number);
       }
     }
-
-    // numbers.shuffle();
 
     var uniqueList = numbers.toSet().toList();
     numbers.clear();
@@ -119,4 +126,33 @@ class HomeController extends GetxController implements Methods {
     else
       return false;
   }
+
+  @override
+  startTimer() {
+    _timer.cancel();
+    start.value = 10;
+    const oneSec = const Duration(seconds: 1);
+
+    _timer = new Timer.periodic(
+      oneSec,
+      (Timer timer) {
+        if (start.value == 0) {
+          timer.cancel();
+        } else {
+          start.value--;
+          print(start.value);
+        }
+      },
+    );
+    print("--------");
+  }
+
+  @override
+  void dispose() {
+    _timer.cancel();
+    super.dispose();
+  }
+
+  @override
+  incrimentScore() {}
 }

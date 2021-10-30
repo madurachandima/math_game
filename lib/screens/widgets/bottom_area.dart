@@ -24,6 +24,7 @@ class BottomArea extends StatelessWidget {
               Obx(() => ElevatedButton(
                   onPressed: () {
                     showDialog<String>(
+                      barrierDismissible: false,
                       context: context,
                       builder: (BuildContext context) =>
                           _controller.checkAnswer(_controller.numbers[0])
@@ -44,6 +45,7 @@ class BottomArea extends StatelessWidget {
               Obx(() => ElevatedButton(
                   onPressed: () {
                     showDialog<String>(
+                      barrierDismissible: false,
                       context: context,
                       builder: (BuildContext context) =>
                           _controller.checkAnswer(_controller.numbers[1])
@@ -64,6 +66,7 @@ class BottomArea extends StatelessWidget {
               Obx(() => ElevatedButton(
                     onPressed: () {
                       showDialog<String>(
+                        barrierDismissible: false,
                         context: context,
                         builder: (BuildContext context) =>
                             _controller.checkAnswer(_controller.numbers[2])
@@ -88,6 +91,7 @@ class BottomArea extends StatelessWidget {
             Obx(() => ElevatedButton(
                   onPressed: () {
                     showDialog<String>(
+                      barrierDismissible: false,
                       context: context,
                       builder: (BuildContext context) =>
                           _controller.checkAnswer(_controller.numbers[3])
@@ -108,6 +112,7 @@ class BottomArea extends StatelessWidget {
             Obx(() => ElevatedButton(
                 onPressed: () {
                   showDialog<String>(
+                    barrierDismissible: false,
                     context: context,
                     builder: (BuildContext context) =>
                         _controller.checkAnswer(_controller.numbers[4])
@@ -128,6 +133,7 @@ class BottomArea extends StatelessWidget {
             Obx(() => ElevatedButton(
                   onPressed: () {
                     showDialog<String>(
+                      barrierDismissible: false,
                       context: context,
                       builder: (BuildContext context) =>
                           _controller.checkAnswer(_controller.numbers[5])

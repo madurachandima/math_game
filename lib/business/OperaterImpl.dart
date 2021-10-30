@@ -1,9 +1,12 @@
 import 'package:math_game/Util.dart';
+import 'package:math_game/interfaces/IOperater.dart';
 import 'package:math_game/model/ResultModel.dart';
 
-class Operater {
+class OperaterImpl implements IOperotors {
   var answer = 0;
+  Utills utill = new Utills();
 
+  @override
   subtraction(val1, val2) {
     var value1 = val1;
     var value2 = val2;
@@ -15,8 +18,8 @@ class Operater {
         return new ResultModel(value1, value2, answer);
       } else {
         while (value1 <= value2) {
-          value1 = new Utills().generateRandomNumner(20, 99);
-          value2 = new Utills().generateRandomNumner(32, 76);
+          value1 = utill.generateRandomNumner(20, 99);
+          value2 = utill.generateRandomNumner(32, 76);
         }
 
         if (value1 >= value2) {
@@ -32,6 +35,7 @@ class Operater {
     }
   }
 
+  @override
   addition(value1, value2) {
     try {
       answer = value1 + value2;
@@ -41,6 +45,7 @@ class Operater {
     }
   }
 
+  @override
   division(val1, val2) {
     try {
       var a;
@@ -61,8 +66,8 @@ class Operater {
       // }
       else {
         while (!isInteger(a)) {
-          value1 = new Utills().generateRandomNumner(1, 145);
-          value2 = new Utills().generateRandomNumner(4, 123);
+          value1 = utill.generateRandomNumner(1, 145);
+          value2 = utill.generateRandomNumner(4, 123);
 
           a = value1 / value2;
         }
@@ -80,6 +85,7 @@ class Operater {
     }
   }
 
+  @override
   multiplication(value1, value2) {
     try {
       answer = value1 * value2;

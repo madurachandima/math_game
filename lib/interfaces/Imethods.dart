@@ -3,4 +3,6 @@ abstract class Methods {
   createAnswersArray();
   setUiValues(vale1, vale2);
   checkAnswer(yourAnswer);
+  startTimer();
+  incrimentScore();
 }
