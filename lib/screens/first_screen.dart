@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:math_game/const/assetsPath.dart';
+import 'package:math_game/controller/firstscreenController.dart';
 import 'package:math_game/screens/home.dart';
 
 class FirstScreen extends StatelessWidget {
@@ -8,6 +9,7 @@ class FirstScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var _firstScreenController = Get.put(FirstScreenController());
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -39,23 +41,25 @@ class FirstScreen extends StatelessWidget {
               ),
               Padding(
                 padding: EdgeInsets.only(bottom: 30, left: 20, right: 20),
-                child: TextField(),
+                child: TextField(
+                  controller: _firstScreenController.userNameController,
+                ),
               ),
               Container(
-                width: 200,
                 height: 50,
                 child: ElevatedButton(
-                    onPressed: () {
+                    onPressed: () async {
                       //TODO save player data
-
-                      Get.to(() => Home());
+                      _firstScreenController.isEnableSignUp.value
+                          ? pressLoginButton()
+                          : null;
                     },
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          "Press to Start ",
+                          "Sign up with google",
                           style: TextStyle(fontSize: 18),
                         ),
                         Icon(
@@ -70,5 +74,11 @@ class FirstScreen extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  pressLoginButton() async {
+    var _firstScreenController = Get.put(FirstScreenController());
+    await _firstScreenController.login();
+    Get.to(() => Home());
   }
 }
