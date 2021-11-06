@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:math_game/controller/homeController.dart';
@@ -32,6 +34,7 @@ class CurrectAnswerDialogBox extends StatelessWidget {
           onPressed: () {
             _controller.calculate();
             _controller.startTimer();
+
             Navigator.pop(context, 'Play again');
           },
           child: const Text('Play again'),

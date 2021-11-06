@@ -23,7 +23,8 @@ class ScoreArea extends StatelessWidget {
                             : Colors.red),
                   )),
               Spacer(),
-              Text("Score : 10", style: TextStyle(fontSize: 20))
+              Obx(() => Text("Score : ${_homeController.score.value}",
+                  style: TextStyle(fontSize: 20)))
             ],
           ),
         ),

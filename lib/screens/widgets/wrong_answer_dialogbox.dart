@@ -32,6 +32,7 @@ class WrongAnswerDialogBox extends StatelessWidget {
           onPressed: () {
             _controller.calculate();
             _controller.startTimer();
+
             Navigator.pop(context, 'Play again');
           },
           child: const Text('Play again'),

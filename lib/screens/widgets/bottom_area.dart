@@ -31,6 +31,7 @@ class BottomArea extends StatelessWidget {
                               ? CurrectAnswerDialogBox()
                               : WrongAnswerDialogBox(),
                     );
+                    _controller.timer.cancel();
                   },
                   child: Container(
                     alignment: Alignment.center,
@@ -52,6 +53,7 @@ class BottomArea extends StatelessWidget {
                               ? CurrectAnswerDialogBox()
                               : WrongAnswerDialogBox(),
                     );
+                    _controller.timer.cancel();
                   },
                   child: Container(
                     alignment: Alignment.center,
@@ -73,6 +75,7 @@ class BottomArea extends StatelessWidget {
                                 ? CurrectAnswerDialogBox()
                                 : WrongAnswerDialogBox(),
                       );
+                      _controller.timer.cancel();
                     },
                     child: Container(
                         alignment: Alignment.center,
@@ -98,6 +101,7 @@ class BottomArea extends StatelessWidget {
                               ? CurrectAnswerDialogBox()
                               : WrongAnswerDialogBox(),
                     );
+                    _controller.timer.cancel();
                   },
                   child: Container(
                       alignment: Alignment.center,
@@ -119,6 +123,7 @@ class BottomArea extends StatelessWidget {
                             ? CurrectAnswerDialogBox()
                             : WrongAnswerDialogBox(),
                   );
+                  _controller.timer.cancel();
                 },
                 child: Container(
                   alignment: Alignment.center,
@@ -140,6 +145,7 @@ class BottomArea extends StatelessWidget {
                               ? CurrectAnswerDialogBox()
                               : WrongAnswerDialogBox(),
                     );
+                    _controller.timer.cancel();
                   },
                   child: Container(
                       alignment: Alignment.center,

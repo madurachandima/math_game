@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:math_game/controller/homeController.dart';
 import 'package:math_game/screens/widgets/bottom_area.dart';
+import 'package:math_game/screens/widgets/game_over_view.dart';
 import 'package:math_game/screens/widgets/score_area.dart';
 import 'package:math_game/screens/widgets/view_area.dart';
 
@@ -10,7 +11,7 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Get.lazyPut(() => HomeController());
+    HomeController homeController = Get.put(HomeController());
 
     return Scaffold(
       appBar: AppBar(
@@ -64,15 +65,17 @@ class Home extends StatelessWidget {
         ],
       ),
       body: SingleChildScrollView(
-        child: Container(
-          color: Colors.white,
-          padding: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [ScoreArea(), ViewArea(), BottomArea()],
-          ),
-        ),
+        child: Obx(() => Container(
+              color: Colors.white,
+              padding: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+              child: homeController.start.value > 0
+                  ? Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [ScoreArea(), ViewArea(), BottomArea()],
+                    )
+                  : GameOverView(),
+            )),
       ),
     );
   }

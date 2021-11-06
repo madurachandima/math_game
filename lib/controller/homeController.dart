@@ -13,8 +13,9 @@ class HomeController extends GetxController implements Methods {
   var uiValue1 = 0.obs;
   var uiValue2 = 0.obs;
   var answer = 0.obs;
+  var score = 0.obs;
 
-  late Timer _timer;
+  late Timer timer;
   var start = 10.obs;
   OperaterImpl opreterImpl = new OperaterImpl();
   Utills util = new Utills();
@@ -121,26 +122,25 @@ class HomeController extends GetxController implements Methods {
 
   @override
   checkAnswer(yourAnswer) {
-    if (yourAnswer == answer.value)
+    if (yourAnswer == answer.value) {
       return true;
-    else
+    } else {
       return false;
+    }
   }
 
   @override
   startTimer() {
-    _timer.cancel();
     start.value = 10;
     const oneSec = const Duration(seconds: 1);
 
-    _timer = new Timer.periodic(
+    timer = new Timer.periodic(
       oneSec,
       (Timer timer) {
         if (start.value == 0) {
           timer.cancel();
         } else {
           start.value--;
-          print(start.value);
         }
       },
     );
@@ -149,10 +149,19 @@ class HomeController extends GetxController implements Methods {
 
   @override
   void dispose() {
-    _timer.cancel();
+    timer.cancel();
     super.dispose();
   }
 
   @override
-  incrimentScore() {}
+  incrimentScore() {
+    score.value = score.value + 10;
+  }
+
+  @override
+  decrimentScore() {
+    if (score.value > 0) {
+      score.value = score.value - 5;
+    }
+  }
 }

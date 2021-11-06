@@ -5,4 +5,5 @@ abstract class Methods {
   checkAnswer(yourAnswer);
   startTimer();
   incrimentScore();
+  decrimentScore();
 }
