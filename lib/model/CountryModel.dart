@@ -1,13 +1,12 @@
 import 'dart:convert';
 
-GetCountryModel getCountryModelFromJson(String str) =>
-    GetCountryModel.fromJson(json.decode(str));
+CountryModel countryModelFromJson(String str) =>
+    CountryModel.fromJson(json.decode(str));
 
-String getCountryModelToJson(GetCountryModel data) =>
-    json.encode(data.toJson());
+String countryModelToJson(CountryModel data) => json.encode(data.toJson());
 
-class GetCountryModel {
-  GetCountryModel({
+class CountryModel {
+  CountryModel({
     this.ip,
     this.location,
     this.welcomeAs,
@@ -19,8 +18,7 @@ class GetCountryModel {
   As? welcomeAs;
   String? isp;
 
-  factory GetCountryModel.fromJson(Map<String, dynamic> json) =>
-      GetCountryModel(
+  factory CountryModel.fromJson(Map<String, dynamic> json) => CountryModel(
         ip: json["ip"],
         location: Location.fromJson(json["location"]),
         welcomeAs: As.fromJson(json["as"]),

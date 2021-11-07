@@ -23,20 +23,32 @@ class ScoreArea extends StatelessWidget {
                             : Colors.red),
                   )),
               Spacer(),
-              Obx(() => Text("Score : ${_homeController.score.value}",
-                  style: TextStyle(fontSize: 20)))
+              Text("Score : ${_homeController.score}",
+                  style: TextStyle(fontSize: 20))
             ],
           ),
         ),
         Padding(
           padding: EdgeInsets.only(bottom: 5),
           child: Row(
-            children: [Text("Your best Scored : 200 ")],
+            children: [
+              Obx(() => Text(
+                  "Your best Scored : ${_homeController.playerDetailModel.value.playerScore != null ? _homeController.playerDetailModel.value.playerScore.toString() : 0}"))
+            ],
           ),
         ),
-        Row(
-          children: [Text("Best Scored by : "), Text("Player Name 600")],
-        ),
+        Obx(() => _homeController.bestPlayersList.length > 0
+            ? Row(
+                children: [
+                  Text("Best Scored by : "),
+                  Text(_homeController.bestPlayersList[0]['playerName']
+                      .toString()),
+                  Text(" : "),
+                  Text(_homeController.bestPlayersList[0]['playerScore']
+                      .toString())
+                ],
+              )
+            : Container()),
       ],
     );
   }

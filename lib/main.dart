@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:math_game/controller/firstscreenController.dart';
-import 'package:math_game/screens/first_screen.dart';
-import 'package:math_game/screens/home.dart';
+import 'package:math_game/screens/firstScreen/first_screen.dart';
+import 'package:math_game/screens/homeScreen/home.dart';
 
 void main() {
   runApp(MyApp());

@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:math_game/const/apiConst.dart';
 import 'package:math_game/const/const.dart';
-import 'package:math_game/model/GetCountryModel.dart';
+import 'package:math_game/model/CountryModel.dart';
 import 'package:math_game/model/LoginModel.dart';
 import 'package:math_game/service/get_request.dart';
 import 'package:math_game/service/post_request.dart';
@@ -14,7 +14,7 @@ import 'package:math_game/service/shared_preference.dart';
 class FirstScreenController extends GetxController {
   var userNameController = TextEditingController();
   var _googleSignIn = GoogleSignIn();
-  var _getCountryModel = GetCountryModel();
+  var _getCountryModel = CountryModel();
   var _loginModel = LoginModel();
   var _publicIp = "";
   var _authId = "";
@@ -57,6 +57,7 @@ class FirstScreenController extends GetxController {
 
         saveGoogleAuthId(_loginModel.authId);
         saveUserId(_loginModel.id);
+        savePlayerName(_loginModel.username);
         isEnableSignUp.value = true;
       } else {
         Get.snackbar("Error", " Google sign up failed");
@@ -90,7 +91,7 @@ class FirstScreenController extends GetxController {
     try {
       var response = await getRequest(GET_USER_LOCATION_BY_IP + "$_publicIp");
       if (response.statusCode == 200) {
-        return getCountryModelFromJson(response.body);
+        return countryModelFromJson(response.body);
       } else {
         Get.snackbar("Error", COMMOMN_ERROR);
         return null;

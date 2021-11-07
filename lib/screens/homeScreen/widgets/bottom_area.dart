@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:math_game/controller/homeController.dart';
-import 'package:math_game/screens/widgets/currect_answer_dialogbox.dart';
-import 'package:math_game/screens/widgets/wrong_answer_dialogbox.dart';
+import 'package:math_game/screens/homeScreen/widgets/currect_answer_dialogbox.dart';
+import 'package:math_game/screens/homeScreen/widgets/wrong_answer_dialogbox.dart';
 
 class BottomArea extends StatelessWidget {
   const BottomArea({Key? key}) : super(key: key);
@@ -23,13 +23,20 @@ class BottomArea extends StatelessWidget {
             children: [
               Obx(() => ElevatedButton(
                   onPressed: () {
+                    var isAnswerTrue =
+                        _controller.checkAnswer(_controller.numbers[0]);
+                    if (isAnswerTrue) {
+                      _controller.incrimentScore();
+                    } else {
+                      _controller.decrimentScore();
+                    }
+
                     showDialog<String>(
                       barrierDismissible: false,
                       context: context,
-                      builder: (BuildContext context) =>
-                          _controller.checkAnswer(_controller.numbers[0])
-                              ? CurrectAnswerDialogBox()
-                              : WrongAnswerDialogBox(),
+                      builder: (BuildContext context) => isAnswerTrue
+                          ? CurrectAnswerDialogBox()
+                          : WrongAnswerDialogBox(),
                     );
                     _controller.timer.cancel();
                   },
@@ -45,13 +52,20 @@ class BottomArea extends StatelessWidget {
               Spacer(),
               Obx(() => ElevatedButton(
                   onPressed: () {
+                    var isAnswerTrue =
+                        _controller.checkAnswer(_controller.numbers[1]);
+                    if (isAnswerTrue) {
+                      _controller.incrimentScore();
+                    } else {
+                      _controller.decrimentScore();
+                    }
+
                     showDialog<String>(
                       barrierDismissible: false,
                       context: context,
-                      builder: (BuildContext context) =>
-                          _controller.checkAnswer(_controller.numbers[1])
-                              ? CurrectAnswerDialogBox()
-                              : WrongAnswerDialogBox(),
+                      builder: (BuildContext context) => isAnswerTrue
+                          ? CurrectAnswerDialogBox()
+                          : WrongAnswerDialogBox(),
                     );
                     _controller.timer.cancel();
                   },
@@ -67,13 +81,20 @@ class BottomArea extends StatelessWidget {
               Spacer(),
               Obx(() => ElevatedButton(
                     onPressed: () {
+                      var isAnswerTrue =
+                          _controller.checkAnswer(_controller.numbers[2]);
+                      if (isAnswerTrue) {
+                        _controller.incrimentScore();
+                      } else {
+                        _controller.decrimentScore();
+                      }
+
                       showDialog<String>(
                         barrierDismissible: false,
                         context: context,
-                        builder: (BuildContext context) =>
-                            _controller.checkAnswer(_controller.numbers[2])
-                                ? CurrectAnswerDialogBox()
-                                : WrongAnswerDialogBox(),
+                        builder: (BuildContext context) => isAnswerTrue
+                            ? CurrectAnswerDialogBox()
+                            : WrongAnswerDialogBox(),
                       );
                       _controller.timer.cancel();
                     },
@@ -93,13 +114,20 @@ class BottomArea extends StatelessWidget {
           children: [
             Obx(() => ElevatedButton(
                   onPressed: () {
+                    var isAnswerTrue =
+                        _controller.checkAnswer(_controller.numbers[3]);
+                    if (isAnswerTrue) {
+                      _controller.incrimentScore();
+                    } else {
+                      _controller.decrimentScore();
+                    }
+
                     showDialog<String>(
                       barrierDismissible: false,
                       context: context,
-                      builder: (BuildContext context) =>
-                          _controller.checkAnswer(_controller.numbers[3])
-                              ? CurrectAnswerDialogBox()
-                              : WrongAnswerDialogBox(),
+                      builder: (BuildContext context) => isAnswerTrue
+                          ? CurrectAnswerDialogBox()
+                          : WrongAnswerDialogBox(),
                     );
                     _controller.timer.cancel();
                   },
@@ -115,13 +143,19 @@ class BottomArea extends StatelessWidget {
             Spacer(),
             Obx(() => ElevatedButton(
                 onPressed: () {
+                  var isAnswerTrue =
+                      _controller.checkAnswer(_controller.numbers[4]);
+                  if (isAnswerTrue) {
+                    _controller.incrimentScore();
+                  } else {
+                    _controller.decrimentScore();
+                  }
                   showDialog<String>(
                     barrierDismissible: false,
                     context: context,
-                    builder: (BuildContext context) =>
-                        _controller.checkAnswer(_controller.numbers[4])
-                            ? CurrectAnswerDialogBox()
-                            : WrongAnswerDialogBox(),
+                    builder: (BuildContext context) => isAnswerTrue
+                        ? CurrectAnswerDialogBox()
+                        : WrongAnswerDialogBox(),
                   );
                   _controller.timer.cancel();
                 },
@@ -137,13 +171,20 @@ class BottomArea extends StatelessWidget {
             Spacer(),
             Obx(() => ElevatedButton(
                   onPressed: () {
+                    var isAnswerTrue =
+                        _controller.checkAnswer(_controller.numbers[5]);
+                    if (isAnswerTrue) {
+                      _controller.incrimentScore();
+                    } else {
+                      _controller.decrimentScore();
+                    }
+
                     showDialog<String>(
                       barrierDismissible: false,
                       context: context,
-                      builder: (BuildContext context) =>
-                          _controller.checkAnswer(_controller.numbers[5])
-                              ? CurrectAnswerDialogBox()
-                              : WrongAnswerDialogBox(),
+                      builder: (BuildContext context) => isAnswerTrue
+                          ? CurrectAnswerDialogBox()
+                          : WrongAnswerDialogBox(),
                     );
                     _controller.timer.cancel();
                   },

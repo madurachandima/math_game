@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:math_game/controller/homeController.dart';
-import 'package:math_game/screens/widgets/bottom_area.dart';
-import 'package:math_game/screens/widgets/game_over_view.dart';
-import 'package:math_game/screens/widgets/score_area.dart';
-import 'package:math_game/screens/widgets/view_area.dart';
+import 'package:math_game/screens/homeScreen/widgets/bottom_area.dart';
+import 'package:math_game/screens/homeScreen/widgets/game_over_view.dart';
+import 'package:math_game/screens/homeScreen/widgets/score_area.dart';
+import 'package:math_game/screens/homeScreen/widgets/view_area.dart';
+import 'package:math_game/screens/homeScreen/widgets/view_best_players.dialogbox.dart';
 
 class Home extends StatelessWidget {
   const Home({Key? key}) : super(key: key);
@@ -26,41 +27,17 @@ class Home extends StatelessWidget {
         foregroundColor: Colors.black54,
         actions: [
           IconButton(
-              onPressed: () {
+              onPressed: () async {
+                await homeController.getBestPlayers();
                 showDialog<String>(
                   context: context,
-                  builder: (BuildContext context) => AlertDialog(
-                    title: Text('Update Player Information'),
-                    content: Container(
-                      height: 120,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text("Player Name : "),
-                          TextField(),
-                          Padding(
-                            padding: EdgeInsets.only(top: 18.0),
-                            child: Text("Your Best Score : 200 "),
-                          )
-                        ],
-                      ),
-                    ),
-                    actions: <Widget>[
-                      TextButton(
-                        onPressed: () => Navigator.pop(context, 'Cancel'),
-                        child: const Text('Cancel'),
-                      ),
-                      TextButton(
-                        onPressed: () => Navigator.pop(context, 'Update'),
-                        child: const Text('Update'),
-                      ),
-                    ],
-                  ),
+                  builder: (BuildContext context) => ViewBestPlayers(),
                 );
               },
               icon: Icon(
-                Icons.settings,
+                Icons.people_alt_rounded,
                 color: Colors.black54,
+                size: 35,
               ))
         ],
       ),

@@ -1,10 +1,19 @@
 import 'dart:async';
+import 'dart:convert';
 
 import 'package:get/get.dart';
-import 'package:math_game/Util.dart';
+
+import 'package:math_game/helper/Util.dart';
+import 'package:math_game/const/apiConst.dart';
+import 'package:math_game/const/const.dart';
 import 'package:math_game/interfaces/Imethods.dart';
 import 'package:math_game/business/OperaterImpl.dart';
+
 import 'package:math_game/model/ResultModel.dart';
+import 'package:math_game/model/playerDetailsModel.dart';
+import 'package:math_game/service/get_request.dart';
+import 'package:math_game/service/post_request.dart';
+import 'package:math_game/service/shared_preference.dart';
 
 class HomeController extends GetxController implements Methods {
   var operaters = ["-", "/", "+", "x"];
@@ -13,18 +22,38 @@ class HomeController extends GetxController implements Methods {
   var uiValue1 = 0.obs;
   var uiValue2 = 0.obs;
   var answer = 0.obs;
-  var score = 0.obs;
+  var score = 0;
 
   late Timer timer;
   var start = 10.obs;
   OperaterImpl opreterImpl = new OperaterImpl();
   Utills util = new Utills();
 
+  var authId = "";
+  var playerId = "";
+
+  var playerDetailModel = PlayerDetailsModel().obs;
+  var playerScoreModel = PlayerDetailsModel().obs;
+
+  var bestPlayersList = [].obs;
+
   @override
-  void onInit() {
+  void onInit() async {
+    super.onInit();
+
     calculate();
     startTimer();
-    super.onInit();
+
+    try {
+      authId = await getGoogleAuthId();
+      playerId = await getUserId();
+    } catch (e) {
+      authId = "";
+      playerId = "";
+    }
+
+    await getPlayerDetails();
+    await getBestPlayers();
   }
 
   @override
@@ -131,7 +160,7 @@ class HomeController extends GetxController implements Methods {
 
   @override
   startTimer() {
-    start.value = 10;
+    start.value = 60;
     const oneSec = const Duration(seconds: 1);
 
     timer = new Timer.periodic(
@@ -154,14 +183,79 @@ class HomeController extends GetxController implements Methods {
   }
 
   @override
-  incrimentScore() {
-    score.value = score.value + 10;
+  incrimentScore() async {
+    score = score + 10;
+    await postPlayerScore();
+    await getBestPlayers();
+    await getPlayerDetails();
   }
 
   @override
   decrimentScore() {
-    if (score.value > 0) {
-      score.value = score.value - 5;
+    if (score > 0) {
+      score = score - 5;
+    }
+  }
+
+  getPlayerDetails() async {
+    try {
+      var data = jsonEncode({
+        "auth_id": "$authId",
+      });
+      var response = await postRequest(data, BASE_URL + "getplayer");
+      if (response.statusCode == 200) {
+        playerDetailModel.value = playerDetailsModelFromJson(response.body);
+      } else if (response.statusCode == 404) {
+        print("new player");
+      } else {
+        Get.snackbar("Error", COMMOMN_ERROR);
+      }
+    } catch (e) {
+      Get.snackbar("Error", COMMOMN_ERROR);
+    }
+  }
+
+  postPlayerScore() async {
+    try {
+      var playerName = await getPlayerName();
+      var data = jsonEncode({
+        "auth_id": "$authId",
+        "playerId": "$playerId",
+        "playerName": "$playerName",
+        "playerScore": score
+      });
+      print(data);
+      var response = await postRequest(data, BASE_URL + "save");
+      if (response.statusCode == 200) {
+        print(response);
+        playerScoreModel.value = playerDetailsModelFromJson(response.body);
+      } else {
+        Get.snackbar("Error", COMMOMN_ERROR);
+      }
+    } catch (e) {
+      print(e);
+      Get.snackbar("Error", COMMOMN_ERROR);
+    }
+  }
+
+  getBestPlayers() async {
+    try {
+      var response = await getRequest(BASE_URL + "getbestplayers");
+      if (response.statusCode == 200) {
+        // bestPlayersModel.value = bestPlayersModelFromJson(response.body);
+        var decodeResponse = jsonDecode(response.body);
+        try {
+          bestPlayersList.value = decodeResponse;
+          print(bestPlayersList[0]['_id']);
+        } catch (e) {
+          print(e);
+        }
+      } else {
+        Get.snackbar("Error", COMMOMN_ERROR);
+      }
+    } catch (e) {
+      print(e);
+      Get.snackbar("Error", COMMOMN_ERROR);
     }
   }
 }

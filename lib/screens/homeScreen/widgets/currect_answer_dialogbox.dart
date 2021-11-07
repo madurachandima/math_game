@@ -10,6 +10,7 @@ class CurrectAnswerDialogBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     HomeController _controller = Get.find();
+
     return AlertDialog(
       title: Text('Correct Answer'),
       content: Container(
@@ -26,10 +27,6 @@ class CurrectAnswerDialogBox extends StatelessWidget {
         ),
       ),
       actions: <Widget>[
-        // TextButton(
-        //   onPressed: () => Navigator.pop(context, 'Cancel'),
-        //   child: const Text('Cancel'),
-        // ),
         TextButton(
           onPressed: () {
             _controller.calculate();

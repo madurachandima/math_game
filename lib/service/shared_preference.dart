@@ -10,6 +10,11 @@ saveUserId(userId) async {
   prefs.setString("userId", userId);
 }
 
+savePlayerName(playerName) async {
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  prefs.setString("playerName", playerName);
+}
+
 getGoogleAuthId() async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
   return prefs.getString("googleAuthId");
@@ -18,4 +23,9 @@ getGoogleAuthId() async {
 getUserId() async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
   return prefs.getString("userId");
+}
+
+getPlayerName() async {
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  return prefs.getString("playerName");
 }
