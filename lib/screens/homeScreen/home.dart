@@ -28,11 +28,9 @@ class Home extends StatelessWidget {
         actions: [
           IconButton(
               onPressed: () async {
-                await homeController.getBestPlayers();
-                showDialog<String>(
-                  context: context,
-                  builder: (BuildContext context) => ViewBestPlayers(),
-                );
+                homeController.isClickdBestPlayersButton
+                    ? null
+                    : pressBestPlayerButton(homeController, context);
               },
               icon: Icon(
                 Icons.people_alt_rounded,
@@ -54,6 +52,14 @@ class Home extends StatelessWidget {
                   : GameOverView(),
             )),
       ),
+    );
+  }
+
+  pressBestPlayerButton(homeController, context) async {
+    await homeController.getBestPlayers();
+    showDialog<String>(
+      context: context,
+      builder: (BuildContext context) => ViewBestPlayers(),
     );
   }
 }

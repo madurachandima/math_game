@@ -9,11 +9,11 @@ class ViewBestPlayers extends StatelessWidget {
   Widget build(BuildContext context) {
     HomeController _homeController = Get.find();
     return AlertDialog(
-      title: Text('Update Player Information'),
       content: Container(
-        width: double.maxFinite,
+        height: MediaQuery.of(context).size.height - 400,
+        width: MediaQuery.of(context).size.width,
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisSize: MainAxisSize.min,
           children: [
             Row(
@@ -28,17 +28,46 @@ class ViewBestPlayers extends StatelessWidget {
                     ))
               ],
             ),
+            Padding(
+              padding: EdgeInsets.symmetric(vertical: 30),
+              child: Text(
+                "View top five players",
+                style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+                textAlign: TextAlign.center,
+              ),
+            ),
             Expanded(
                 child: ListView.builder(
                     padding: EdgeInsets.all(8),
                     itemCount: _homeController.bestPlayersList.length,
                     itemBuilder: (BuildContext context, int index) {
                       return Container(
+                        padding: EdgeInsets.symmetric(vertical: 10),
                         child: Row(
                           children: [
-                            Text(_homeController.bestPlayersList[index]
-                                    ['playerName']
-                                .toString())
+                            Spacer(),
+                            Text(
+                              _homeController.bestPlayersList[index]
+                                      ['playerName']
+                                  .toString(),
+                              style: TextStyle(
+                                  fontSize: 20, fontWeight: FontWeight.w400),
+                            ),
+                            Spacer(),
+                            Text(
+                                _homeController.bestPlayersList[index]
+                                        ['country']
+                                    .toString(),
+                                style: TextStyle(
+                                    fontSize: 20, fontWeight: FontWeight.w400)),
+                            Spacer(),
+                            Text(
+                                _homeController.bestPlayersList[index]
+                                        ['playerScore']
+                                    .toString(),
+                                style: TextStyle(
+                                    fontSize: 20, fontWeight: FontWeight.w400)),
+                            Spacer()
                           ],
                         ),
                       );

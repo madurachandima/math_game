@@ -58,6 +58,8 @@ class FirstScreenController extends GetxController {
         saveGoogleAuthId(_loginModel.authId);
         saveUserId(_loginModel.id);
         savePlayerName(_loginModel.username);
+        savePlayerCoubtry(_loginModel.country);
+
         isEnableSignUp.value = true;
       } else {
         Get.snackbar("Error", " Google sign up failed");

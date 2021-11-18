@@ -37,6 +37,8 @@ class HomeController extends GetxController implements Methods {
 
   var bestPlayersList = [].obs;
 
+  var isClickdBestPlayersButton = false;
+
   @override
   void onInit() async {
     super.onInit();
@@ -218,11 +220,14 @@ class HomeController extends GetxController implements Methods {
   postPlayerScore() async {
     try {
       var playerName = await getPlayerName();
+      var playerCountry = await getPlayerCountry();
+
       var data = jsonEncode({
         "auth_id": "$authId",
         "playerId": "$playerId",
         "playerName": "$playerName",
-        "playerScore": score
+        "playerScore": score,
+        "country": "$playerCountry"
       });
       print(data);
       var response = await postRequest(data, BASE_URL + "save");
@@ -240,22 +245,27 @@ class HomeController extends GetxController implements Methods {
 
   getBestPlayers() async {
     try {
+      isClickdBestPlayersButton = true;
       var response = await getRequest(BASE_URL + "getbestplayers");
       if (response.statusCode == 200) {
         // bestPlayersModel.value = bestPlayersModelFromJson(response.body);
         var decodeResponse = jsonDecode(response.body);
         try {
           bestPlayersList.value = decodeResponse;
-          print(bestPlayersList[0]['_id']);
+          // print(bestPlayersList[0]['_id']);
+          isClickdBestPlayersButton = false;
         } catch (e) {
+          isClickdBestPlayersButton = false;
           print(e);
         }
       } else {
         Get.snackbar("Error", COMMOMN_ERROR);
+        isClickdBestPlayersButton = false;
       }
     } catch (e) {
       print(e);
       Get.snackbar("Error", COMMOMN_ERROR);
+      isClickdBestPlayersButton = false;
     }
   }
 }

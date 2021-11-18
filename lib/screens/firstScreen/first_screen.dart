@@ -49,7 +49,6 @@ class FirstScreen extends StatelessWidget {
                 height: 50,
                 child: ElevatedButton(
                     onPressed: () async {
-                      //TODO save player data
                       _firstScreenController.isEnableSignUp.value
                           ? pressLoginButton()
                           : null;
