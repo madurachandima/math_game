@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:math_game/config/color_config.dart';
 import 'package:math_game/const/assetsPath.dart';
 import 'package:math_game/controller/firstscreenController.dart';
 import 'package:math_game/screens/homeScreen/home.dart';
@@ -13,18 +14,19 @@ class FirstScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
-        foregroundColor: Colors.white,
-        backgroundColor: Colors.white,
+        // foregroundColor: Colors.white,
+        // backgroundColor: Colors.white,
       ),
       body: Container(
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
-        color: Colors.white,
+        // color: Colors.white,
         padding: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisSize: MainAxisSize.min,
             children: [
               Container(
                 height: 300,
@@ -35,16 +37,54 @@ class FirstScreen extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.only(top: 15, bottom: 10),
                 child: Text(
-                  "Enter Your Name ",
-                  style: TextStyle(fontSize: 25, color: Colors.black54),
+                  "Welcome to Math for FUN ",
+                  style: TextStyle(
+                    fontSize: 25,
+                  ),
                 ),
               ),
               Padding(
-                padding: EdgeInsets.only(bottom: 30, left: 20, right: 20),
-                child: TextField(
-                  controller: _firstScreenController.userNameController,
-                ),
-              ),
+                  padding: EdgeInsets.only(
+                    top: 15,
+                    bottom: 30,
+                  ),
+                  child: TextFormField(
+                    controller: _firstScreenController.userNameController,
+                    autofocus: false,
+                    style: const TextStyle(
+                        fontSize: 14.0, color: Color(0xFFbdc6cf)),
+                    cursorColor: ColorConfig.appDefaultYellow,
+                    decoration: InputDecoration(
+                      hintText: "Enter Player Name",
+                      fillColor: Colors.transparent,
+                      filled: true,
+                      hintStyle: TextStyle(color: Colors.grey[400]),
+                      // errorStyle: const TextStyle(color: ColorConfig.appRed),
+                      contentPadding:
+                          const EdgeInsets.fromLTRB(10.0, 15.0, 10.0, 15.0),
+                      enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(0),
+                          borderSide: const BorderSide(
+                              color: ColorConfig.appDefaultYellow)),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(0),
+                        borderSide: const BorderSide(
+                            color: ColorConfig.appDefaultYellow),
+                      ),
+                      errorBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(0),
+                        borderSide: const BorderSide(color: ColorConfig.appRed),
+                      ),
+                      focusedErrorBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(0),
+                        borderSide: const BorderSide(color: ColorConfig.appRed),
+                      ),
+                    ),
+                  )
+                  // TextField(
+                  //   controller: _firstScreenController.userNameController,
+                  // ),
+                  ),
               Container(
                 height: 50,
                 child: ElevatedButton(
@@ -78,6 +118,5 @@ class FirstScreen extends StatelessWidget {
   pressLoginButton() async {
     var _firstScreenController = Get.put(FirstScreenController());
     await _firstScreenController.login();
-    Get.to(() => Home());
   }
 }

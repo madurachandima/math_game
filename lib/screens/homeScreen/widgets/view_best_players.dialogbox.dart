@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:math_game/config/color_config.dart';
 import 'package:math_game/controller/homeController.dart';
 
 class ViewBestPlayers extends StatelessWidget {
@@ -10,7 +11,7 @@ class ViewBestPlayers extends StatelessWidget {
     HomeController _homeController = Get.find();
     return AlertDialog(
       content: Container(
-        height: MediaQuery.of(context).size.height - 400,
+        height: MediaQuery.of(context).size.height - 250,
         width: MediaQuery.of(context).size.width,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -31,47 +32,61 @@ class ViewBestPlayers extends StatelessWidget {
             Padding(
               padding: EdgeInsets.symmetric(vertical: 30),
               child: Text(
-                "View top five players",
+                "Top Five players",
                 style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
                 textAlign: TextAlign.center,
               ),
             ),
             Expanded(
-                child: ListView.builder(
-                    padding: EdgeInsets.all(8),
-                    itemCount: _homeController.bestPlayersList.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      return Container(
-                        padding: EdgeInsets.symmetric(vertical: 10),
-                        child: Row(
-                          children: [
-                            Spacer(),
-                            Text(
-                              _homeController.bestPlayersList[index]
-                                      ['playerName']
-                                  .toString(),
-                              style: TextStyle(
-                                  fontSize: 20, fontWeight: FontWeight.w400),
-                            ),
-                            Spacer(),
-                            Text(
-                                _homeController.bestPlayersList[index]
-                                        ['country']
-                                    .toString(),
-                                style: TextStyle(
-                                    fontSize: 20, fontWeight: FontWeight.w400)),
-                            Spacer(),
-                            Text(
-                                _homeController.bestPlayersList[index]
-                                        ['playerScore']
-                                    .toString(),
-                                style: TextStyle(
-                                    fontSize: 20, fontWeight: FontWeight.w400)),
-                            Spacer()
-                          ],
+                child: DataTable(
+                    horizontalMargin: 0,
+                    columnSpacing: MediaQuery.of(context).size.width / 30,
+                    columns: [
+                      DataColumn(
+                          label: SizedBox(
+                        width: MediaQuery.of(context).size.width / 5,
+                        child: const Text(
+                          "Name",
+                          style: TextStyle(color: ColorConfig.appTextGrey),
+                          textAlign: TextAlign.start,
                         ),
-                      );
-                    }))
+                      )),
+                      DataColumn(
+                          label: SizedBox(
+                        width: MediaQuery.of(context).size.width / 5,
+                        child: const Text(
+                          "Country",
+                          style: TextStyle(color: ColorConfig.appTextGrey),
+                          textAlign: TextAlign.start,
+                        ),
+                      )),
+                      DataColumn(
+                          label: SizedBox(
+                        width: MediaQuery.of(context).size.width / 5,
+                        child: const Text(
+                          "Score",
+                          style: TextStyle(color: ColorConfig.appTextGrey),
+                          textAlign: TextAlign.start,
+                        ),
+                      ))
+                    ],
+                    rows: _homeController.bestPlayersList
+                        .map((element) => DataRow(cells: [
+                              DataCell(Text(
+                                element['playerName'].toString().toUpperCase(),
+                                style: TextStyle(
+                                    fontSize: 20, fontWeight: FontWeight.w400),
+                              )),
+                              DataCell(Text(element['country'].toString(),
+                                  style: TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.w400))),
+                              DataCell(Text(element['playerScore'].toString(),
+                                  style: TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.w400)))
+                            ]))
+                        .toList()))
           ],
         ),
       ),

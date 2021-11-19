@@ -162,7 +162,7 @@ class HomeController extends GetxController implements Methods {
 
   @override
   startTimer() {
-    start.value = 60;
+    start.value = 10;
     const oneSec = const Duration(seconds: 1);
 
     timer = new Timer.periodic(

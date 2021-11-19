@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:math_game/config/color_config.dart';
 import 'package:math_game/controller/homeController.dart';
 import 'package:math_game/screens/homeScreen/widgets/bottom_area.dart';
 import 'package:math_game/screens/homeScreen/widgets/game_over_view.dart';
@@ -19,29 +20,33 @@ class Home extends StatelessWidget {
         // iconTheme: IconThemeData(color: Colors.black54),
         title: Text(
           "Math for FUN",
-          style: TextStyle(color: Colors.black54),
+          // style: TextStyle(color: ColorConfig.appTextGrey),
         ),
         centerTitle: true,
         elevation: 0,
-        backgroundColor: Colors.white,
-        foregroundColor: Colors.black54,
+        // backgroundColor: ColorConfig.appBackgroundBalck,
+        // foregroundColor: ColorConfig.appTextGrey,
         actions: [
-          IconButton(
-              onPressed: () async {
-                homeController.isClickdBestPlayersButton
-                    ? null
-                    : pressBestPlayerButton(homeController, context);
-              },
-              icon: Icon(
-                Icons.people_alt_rounded,
-                color: Colors.black54,
-                size: 35,
-              ))
+          Padding(
+            padding: const EdgeInsets.only(right: 15.0),
+            child: IconButton(
+                onPressed: () async {
+                  homeController.isClickdBestPlayersButton
+                      ? null
+                      : pressBestPlayerButton(homeController, context);
+                },
+                icon: Icon(
+                  Icons.people_alt_rounded,
+                  // color: ColorConfig.appTextGrey,
+                  size: 35,
+                )),
+          )
         ],
       ),
+      // backgroundColor: ColorConfig.appBackgroundBalck,
       body: SingleChildScrollView(
         child: Obx(() => Container(
-              color: Colors.white,
+              // color: ColorConfig.appBackgroundBalck,
               padding: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
               child: homeController.start.value > 0
                   ? Column(

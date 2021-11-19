@@ -7,6 +7,7 @@ import 'package:math_game/const/apiConst.dart';
 import 'package:math_game/const/const.dart';
 import 'package:math_game/model/CountryModel.dart';
 import 'package:math_game/model/LoginModel.dart';
+import 'package:math_game/screens/homeScreen/home.dart';
 import 'package:math_game/service/get_request.dart';
 import 'package:math_game/service/post_request.dart';
 import 'package:math_game/service/shared_preference.dart';
@@ -43,7 +44,7 @@ class FirstScreenController extends GetxController {
 
   login() async {
     isEnableSignUp.value = false;
-    var _username = userNameController.text;
+    var _username = userNameController.text.trim();
     if (_username != "") {
       var signinResponse = await _googleSignIn.signIn();
       print(signinResponse);
@@ -61,6 +62,8 @@ class FirstScreenController extends GetxController {
         savePlayerCoubtry(_loginModel.country);
 
         isEnableSignUp.value = true;
+        // Get.to(() => Home());
+        Get.off(() => Home());
       } else {
         Get.snackbar("Error", " Google sign up failed");
         isEnableSignUp.value = true;
