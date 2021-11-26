@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:math_game/config/color_config.dart';
 import 'package:math_game/const/assetsPath.dart';
 import 'package:math_game/controller/firstscreenController.dart';
-import 'package:math_game/screens/homeScreen/home.dart';
 
 class FirstScreen extends StatelessWidget {
   const FirstScreen({Key? key}) : super(key: key);
@@ -91,6 +90,7 @@ class FirstScreen extends StatelessWidget {
                     onPressed: () async {
                       _firstScreenController.isEnableSignUp.value
                           ? pressLoginButton()
+                          // ignore: unnecessary_statements
                           : null;
                     },
                     child: Row(
@@ -117,6 +117,7 @@ class FirstScreen extends StatelessWidget {
 
   pressLoginButton() async {
     var _firstScreenController = Get.put(FirstScreenController());
+    //**Call login function */
     await _firstScreenController.login();
   }
 }

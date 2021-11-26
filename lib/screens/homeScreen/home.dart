@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:math_game/config/color_config.dart';
 import 'package:math_game/controller/homeController.dart';
 import 'package:math_game/screens/homeScreen/widgets/bottom_area.dart';
 import 'package:math_game/screens/homeScreen/widgets/game_over_view.dart';

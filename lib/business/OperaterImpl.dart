@@ -1,12 +1,11 @@
 import 'package:math_game/helper/Util.dart';
-import 'package:math_game/interfaces/IOperater.dart';
+
 import 'package:math_game/model/ResultModel.dart';
 
-class OperaterImpl implements IOperotors {
+class OperaterImpl {
   var answer = 0;
   Utills utill = new Utills();
 
-  @override
   subtraction(val1, val2) {
     var value1 = val1;
     var value2 = val2;
@@ -26,8 +25,8 @@ class OperaterImpl implements IOperotors {
           answer = value1 - value2;
           return new ResultModel(value1, value2, answer);
         } else {
-          print("else value 1 ${value1}");
-          print("else value 2 ${value2}");
+          print("else value 1 $value1");
+          print("else value 2 $value2");
         }
       }
     } catch (e) {
@@ -35,7 +34,6 @@ class OperaterImpl implements IOperotors {
     }
   }
 
-  @override
   addition(value1, value2) {
     try {
       answer = value1 + value2;
@@ -45,7 +43,6 @@ class OperaterImpl implements IOperotors {
     }
   }
 
-  @override
   division(val1, val2) {
     try {
       var a;
@@ -85,7 +82,6 @@ class OperaterImpl implements IOperotors {
     }
   }
 
-  @override
   multiplication(value1, value2) {
     try {
       answer = value1 * value2;

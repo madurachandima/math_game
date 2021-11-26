@@ -28,6 +28,7 @@ class FirstScreenController extends GetxController {
   void onInit() async {
     super.onInit();
     try {
+      //** traing to get google auth id and user id*/
       _authId = await getGoogleAuthId();
       _playerId = await getUserId();
     } catch (e) {
@@ -35,6 +36,7 @@ class FirstScreenController extends GetxController {
       _playerId = "";
     }
 
+//**check  the user id and auth id is empty*/
     if (_authId == "" && _playerId == "") {
       isNewUser.value = true;
     } else {
@@ -46,23 +48,28 @@ class FirstScreenController extends GetxController {
     isEnableSignUp.value = false;
     var _username = userNameController.text.trim();
     if (_username != "") {
+      //*call google sign in/
       var signinResponse = await _googleSignIn.signIn();
-      print(signinResponse);
-      // _googleSignIn.signOut();
 
+      //**check the signinResponse is null
       if (signinResponse != null) {
+        //*get google auth ID
         _authId = signinResponse.id;
+        //* get user public id
         _publicIp = await getUserPublicIp();
+        //* get user country
         _getCountryModel = await getUserLopcation();
+        //* post user data
         _loginModel = await postLoginDetails(_username, _authId);
 
+        //* save data in SharedPreferences
         saveGoogleAuthId(_loginModel.authId);
         saveUserId(_loginModel.id);
         savePlayerName(_loginModel.username);
         savePlayerCoubtry(_loginModel.country);
 
         isEnableSignUp.value = true;
-        // Get.to(() => Home());
+        //* goto Home screen
         Get.off(() => Home());
       } else {
         Get.snackbar("Error", " Google sign up failed");
@@ -79,14 +86,14 @@ class FirstScreenController extends GetxController {
       var response = await getRequest(GET_USER_PUBLIC_IP);
       if (response.statusCode == 200) {
         var decodeResponse = jsonDecode(response.body);
-        print(decodeResponse);
+        // print(decodeResponse);
         return decodeResponse['ip'];
       } else {
         Get.snackbar("Error", COMMOMN_ERROR);
         return null;
       }
     } catch (e) {
-      print(e);
+      // print(e);
       Get.snackbar("Error", COMMOMN_ERROR);
       return null;
     }

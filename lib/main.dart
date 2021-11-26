@@ -1,7 +1,6 @@
-import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:math_game/config/color_config.dart';
+
 import 'package:math_game/controller/firstscreenController.dart';
 import 'package:math_game/screens/firstScreen/first_screen.dart';
 import 'package:math_game/screens/homeScreen/home.dart';
@@ -35,6 +34,7 @@ class MyApp extends StatelessWidget {
                   disabledColor: Colors.grey,
                 )),
             debugShowCheckedModeBanner: false,
+            //*check this user already have accont or new user*//
             home: Obx(() =>
                 firstScreenController.isNewUser.value ? FirstScreen() : Home()),
           );
@@ -58,7 +58,9 @@ class Splash extends StatelessWidget {
           child:
               //  lightMode
               //     ?
-              Image.asset('assets/images/image_1.png')
+              SizedBox(
+                  width: MediaQuery.of(context).size.width / 1.5,
+                  child: Image.asset('assets/images/image_1.png'))
           // : Image.asset('assets/images/image_1.png')
           ),
     );

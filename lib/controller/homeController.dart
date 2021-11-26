@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 import 'package:math_game/helper/Util.dart';
 import 'package:math_game/const/apiConst.dart';
 import 'package:math_game/const/const.dart';
-import 'package:math_game/interfaces/Imethods.dart';
+
 import 'package:math_game/business/OperaterImpl.dart';
 
 import 'package:math_game/model/ResultModel.dart';
@@ -15,7 +15,7 @@ import 'package:math_game/service/get_request.dart';
 import 'package:math_game/service/post_request.dart';
 import 'package:math_game/service/shared_preference.dart';
 
-class HomeController extends GetxController implements Methods {
+class HomeController extends GetxController {
   var operaters = ["-", "/", "+", "x"];
   var numbers = [].obs;
   var operater = "".obs;
@@ -58,7 +58,6 @@ class HomeController extends GetxController implements Methods {
     await getBestPlayers();
   }
 
-  @override
   calculate() async {
     var randValue1 = util.generateRandomNumner(11, 110);
     var randValue2 = util.generateRandomNumner(10, 150);
@@ -121,7 +120,6 @@ class HomeController extends GetxController implements Methods {
     }
   }
 
-  @override
   createAnswersArray() async {
     numbers.clear();
     var maxValue = answer.value + 10;
@@ -145,13 +143,11 @@ class HomeController extends GetxController implements Methods {
     print(numbers);
   }
 
-  @override
   setUiValues(value1, value2) {
     uiValue1.value = value1;
     uiValue2.value = value2;
   }
 
-  @override
   checkAnswer(yourAnswer) {
     if (yourAnswer == answer.value) {
       return true;
@@ -160,8 +156,8 @@ class HomeController extends GetxController implements Methods {
     }
   }
 
-  @override
   startTimer() {
+    //* timer
     start.value = 10;
     const oneSec = const Duration(seconds: 1);
 
@@ -178,13 +174,11 @@ class HomeController extends GetxController implements Methods {
     print("--------");
   }
 
-  @override
   void dispose() {
     timer.cancel();
     super.dispose();
   }
 
-  @override
   incrimentScore() async {
     score = score + 10;
     await postPlayerScore();
@@ -192,7 +186,6 @@ class HomeController extends GetxController implements Methods {
     await getPlayerDetails();
   }
 
-  @override
   decrimentScore() {
     if (score > 0) {
       score = score - 5;
