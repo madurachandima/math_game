@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:math_game/controller/homeController.dart';
+import 'package:math_game/screens/homeScreen/controller/homeController.dart';
 
 class ViewArea extends StatelessWidget {
   const ViewArea({Key? key}) : super(key: key);

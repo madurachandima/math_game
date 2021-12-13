@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:math_game/controller/homeController.dart';
+
+import 'package:math_game/screens/homeScreen/controller/homeController.dart';
 import 'package:math_game/screens/homeScreen/widgets/currect_answer_dialogbox.dart';
 import 'package:math_game/screens/homeScreen/widgets/wrong_answer_dialogbox.dart';
 

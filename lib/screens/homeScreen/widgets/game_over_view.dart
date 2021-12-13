@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:math_game/controller/homeController.dart';
+import 'package:math_game/helper/Util.dart';
+import 'package:math_game/screens/homeScreen/controller/homeController.dart';
 
 class GameOverView extends StatelessWidget {
   const GameOverView({Key? key}) : super(key: key);

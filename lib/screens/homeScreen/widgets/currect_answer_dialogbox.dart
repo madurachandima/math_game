@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:math_game/controller/homeController.dart';
+import 'package:math_game/screens/homeScreen/controller/homeController.dart';
 
 class CurrectAnswerDialogBox extends StatelessWidget {
   const CurrectAnswerDialogBox({Key? key}) : super(key: key);
@@ -19,7 +19,7 @@ class CurrectAnswerDialogBox extends StatelessWidget {
             Text("Your answer is correct "),
             Padding(
               padding: EdgeInsets.only(top: 18.0),
-              child: Text("Answer is : ${_controller.answer.value} "),
+              child: Text("Answer is : ${_controller.uiAnswer.value} "),
             )
           ],
         ),

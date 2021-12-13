@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:math_game/config/color_config.dart';
 import 'package:math_game/const/assetsPath.dart';
-import 'package:math_game/controller/firstscreenController.dart';
+import 'package:math_game/screens/firstScreen/Controller/firstscreenController.dart';
 
 class FirstScreen extends StatelessWidget {
   const FirstScreen({Key? key}) : super(key: key);

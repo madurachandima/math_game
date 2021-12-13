@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:math_game/config/color_config.dart';
-import 'package:math_game/controller/homeController.dart';
+import 'package:math_game/screens/homeScreen/controller/homeController.dart';
 
 class ScoreArea extends StatelessWidget {
   const ScoreArea({Key? key}) : super(key: key);

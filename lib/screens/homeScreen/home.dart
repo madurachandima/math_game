@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:math_game/controller/homeController.dart';
+import 'package:math_game/screens/homeScreen/apiRequest/api_request.dart';
+import 'package:math_game/screens/homeScreen/controller/homeController.dart';
+
 import 'package:math_game/screens/homeScreen/widgets/bottom_area.dart';
 import 'package:math_game/screens/homeScreen/widgets/game_over_view.dart';
 import 'package:math_game/screens/homeScreen/widgets/score_area.dart';
@@ -31,8 +33,9 @@ class Home extends StatelessWidget {
             child: IconButton(
                 onPressed: () async {
                   homeController.isClickdBestPlayersButton
+                      // ignore: unnecessary_statements
                       ? null
-                      : pressBestPlayerButton(homeController, context);
+                      : pressBestPlayerButton(context);
                 },
                 icon: Icon(
                   Icons.people_alt_rounded,
@@ -59,8 +62,8 @@ class Home extends StatelessWidget {
     );
   }
 
-  pressBestPlayerButton(homeController, context) async {
-    await homeController.getBestPlayers();
+  pressBestPlayerButton(context) async {
+    await new ApiRequest().getBestPlayers();
     showDialog<String>(
       context: context,
       builder: (BuildContext context) => ViewBestPlayers(),
