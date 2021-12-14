@@ -13,13 +13,10 @@ class FirstScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
-        // foregroundColor: Colors.white,
-        // backgroundColor: Colors.white,
       ),
       body: Container(
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
-        // color: Colors.white,
         padding: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
         child: SingleChildScrollView(
           child: Column(
@@ -43,51 +40,49 @@ class FirstScreen extends StatelessWidget {
                 ),
               ),
               Padding(
-                  padding: EdgeInsets.only(
-                    top: 15,
-                    bottom: 30,
-                  ),
-                  child: TextFormField(
-                    controller: _firstScreenController.userNameController,
-                    autofocus: false,
-                    style: const TextStyle(
-                        fontSize: 14.0, color: Color(0xFFbdc6cf)),
-                    cursorColor: ColorConfig.appDefaultYellow,
-                    decoration: InputDecoration(
-                      hintText: "Enter Player Name",
-                      fillColor: Colors.transparent,
-                      filled: true,
-                      hintStyle: TextStyle(color: Colors.grey[400]),
-                      // errorStyle: const TextStyle(color: ColorConfig.appRed),
-                      contentPadding:
-                          const EdgeInsets.fromLTRB(10.0, 15.0, 10.0, 15.0),
-                      enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(0),
-                          borderSide: const BorderSide(
-                              color: ColorConfig.appDefaultYellow)),
-                      focusedBorder: OutlineInputBorder(
+                padding: EdgeInsets.only(
+                  top: 15,
+                  bottom: 30,
+                ),
+                child: TextFormField(
+                  controller: _firstScreenController.userNameController,
+                  autofocus: false,
+                  style:
+                      const TextStyle(fontSize: 14.0, color: Color(0xFFbdc6cf)),
+                  cursorColor: ColorConfig.appDefaultYellow,
+                  decoration: InputDecoration(
+                    hintText: "Enter Player Name",
+                    fillColor: Colors.transparent,
+                    filled: true,
+                    hintStyle: TextStyle(color: Colors.grey[400]),
+                    contentPadding:
+                        const EdgeInsets.fromLTRB(10.0, 15.0, 10.0, 15.0),
+                    enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(0),
                         borderSide: const BorderSide(
-                            color: ColorConfig.appDefaultYellow),
-                      ),
-                      errorBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(0),
-                        borderSide: const BorderSide(color: ColorConfig.appRed),
-                      ),
-                      focusedErrorBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(0),
-                        borderSide: const BorderSide(color: ColorConfig.appRed),
-                      ),
+                            color: ColorConfig.appDefaultYellow)),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(0),
+                      borderSide:
+                          const BorderSide(color: ColorConfig.appDefaultYellow),
                     ),
-                  )
-                  // TextField(
-                  //   controller: _firstScreenController.userNameController,
-                  // ),
+                    errorBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(0),
+                      borderSide: const BorderSide(color: ColorConfig.appRed),
+                    ),
+                    focusedErrorBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(0),
+                      borderSide: const BorderSide(color: ColorConfig.appRed),
+                    ),
                   ),
+                ),
+              ),
               Container(
                 height: 50,
+                //sign in button
                 child: ElevatedButton(
                     onPressed: () async {
+                      //check is button already pressed if not call pressLoginButton function
                       _firstScreenController.isEnableSignUp.value
                           ? pressLoginButton()
                           // ignore: unnecessary_statements

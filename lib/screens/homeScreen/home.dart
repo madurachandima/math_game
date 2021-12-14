@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:math_game/screens/homeScreen/apiRequest/api_request.dart';
 import 'package:math_game/screens/homeScreen/controller/homeController.dart';
 
-import 'package:math_game/screens/homeScreen/widgets/bottom_area.dart';
+import 'package:math_game/screens/homeScreen/widgets/answer_buttons_area.dart';
 import 'package:math_game/screens/homeScreen/widgets/game_over_view.dart';
 import 'package:math_game/screens/homeScreen/widgets/score_area.dart';
 import 'package:math_game/screens/homeScreen/widgets/view_area.dart';
@@ -18,19 +18,17 @@ class Home extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        // iconTheme: IconThemeData(color: Colors.black54),
         title: Text(
           "Math for FUN",
-          // style: TextStyle(color: ColorConfig.appTextGrey),
         ),
         centerTitle: true,
         elevation: 0,
-        // backgroundColor: ColorConfig.appBackgroundBalck,
-        // foregroundColor: ColorConfig.appTextGrey,
         actions: [
           Padding(
             padding: const EdgeInsets.only(right: 15.0),
+            //app bar best players button
             child: IconButton(
+                //app bar best players button click event
                 onPressed: () async {
                   homeController.isClickdBestPlayersButton
                       // ignore: unnecessary_statements
@@ -45,10 +43,8 @@ class Home extends StatelessWidget {
           )
         ],
       ),
-      // backgroundColor: ColorConfig.appBackgroundBalck,
       body: SingleChildScrollView(
         child: Obx(() => Container(
-              // color: ColorConfig.appBackgroundBalck,
               padding: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
               child: homeController.start.value > 0
                   ? Column(

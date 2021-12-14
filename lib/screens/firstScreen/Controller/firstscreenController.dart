@@ -9,10 +9,8 @@ import 'package:math_game/service/shared_preference.dart';
 class FirstScreenController extends GetxController {
   var userNameController = TextEditingController();
   var _googleSignIn = GoogleSignIn();
-  // var _getCountryModel = CountryModel();
   LoginModel _loginModel = new LoginModel();
   var _apiRequest = ApiRequest();
-  // var _publicIp = "";
   var _authId = "";
   var _playerId = "";
 
@@ -88,6 +86,6 @@ class FirstScreenController extends GetxController {
     saveGoogleAuthId(_loginModel.authId);
     saveUserId(_loginModel.id);
     savePlayerName(_loginModel.username);
-    savePlayerCoubtry(_loginModel.country);
+    savePlayerCountry(_loginModel.country);
   }
 }

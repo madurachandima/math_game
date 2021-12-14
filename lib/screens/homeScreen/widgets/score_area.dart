@@ -15,9 +15,11 @@ class ScoreArea extends StatelessWidget {
           Row(
             children: [
               Obx(() => Text(
+                    // set timer value to the text
                     "Time : ${_homeController.start.value} s",
                     style: TextStyle(
                         fontSize: 20,
+                        //change timter text color when value less than 5
                         color: _homeController.start.value > 5
                             ? ColorConfig.buttonColorIndigo
                             : ColorConfig.appRed),
@@ -25,12 +27,14 @@ class ScoreArea extends StatelessWidget {
               Spacer(),
               Column(
                 children: [
+                  // set score to the text
                   Text("Score : ${_homeController.score}",
                       style: TextStyle(fontSize: 20)),
                   SizedBox(
                     height: 10,
                   ),
                   Obx(() => Text(
+                      // set player best score to the text
                       "Your Best : ${_homeController.playerDetailModel.value.playerScore != null ? _homeController.playerDetailModel.value.playerScore.toString() : 0}"))
                 ],
               )

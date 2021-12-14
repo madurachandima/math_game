@@ -24,6 +24,7 @@ class ViewArea extends StatelessWidget {
               Expanded(
                 flex: 5,
                 child: Obx(() => Text(
+                      // set first value to the Text
                       controller.uiValue1.value.toString(),
                       style: TextStyle(
                         fontSize: 60,
@@ -35,6 +36,7 @@ class ViewArea extends StatelessWidget {
               Expanded(
                 flex: 5,
                 child: Obx(() => Text(
+                      // set operater to the Text
                       controller.operater.value.toString(),
                       style:
                           TextStyle(fontSize: 60, fontWeight: FontWeight.bold),
@@ -44,6 +46,7 @@ class ViewArea extends StatelessWidget {
               Expanded(
                 flex: 5,
                 child: Obx(() => Text(
+                      // set second value to the Text
                       controller.uiValue2.value.toString(),
                       style:
                           TextStyle(fontSize: 60, fontWeight: FontWeight.bold),

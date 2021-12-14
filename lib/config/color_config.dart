@@ -13,7 +13,4 @@ class ColorConfig {
   static const Color buttonColorIndigo = Color(0xff17D7A0);
   static const Color buttonColorlightPurple = Color(0xff998CEB);
   static const Color buttonColorLightOrieng = Color(0xffFF5C58);
-  // static const Color buttonColorOrange = Color(0xff17D7A0);
-  // static const Color buttonColorIndigo = Color(0xff17D7A0);
-  // static const Color buttonColorIndigo = Color(0xff17D7A0);
 }

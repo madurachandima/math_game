@@ -70,6 +70,7 @@ class ViewBestPlayers extends StatelessWidget {
                         ),
                       ))
                     ],
+                    // map bestPlayersList array get array details
                     rows: _homeController.bestPlayersList
                         .map((element) => DataRow(cells: [
                               DataCell(Text(

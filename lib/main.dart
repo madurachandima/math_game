@@ -49,20 +49,12 @@ class Splash extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // bool lightMode =
-    //     MediaQuery.of(context).platformBrightness == Brightness.light;
     return Scaffold(
       backgroundColor: Color(0xff303030),
-      //     lightMode ? const Color(0xffe1f5fe) : const Color(0xff042a49),
       body: Center(
-          child:
-              //  lightMode
-              //     ?
-              SizedBox(
-                  width: MediaQuery.of(context).size.width / 1.5,
-                  child: Image.asset('assets/images/image_1.png'))
-          // : Image.asset('assets/images/image_1.png')
-          ),
+          child: SizedBox(
+              width: MediaQuery.of(context).size.width / 1.5,
+              child: Image.asset('assets/images/image_1.png'))),
     );
   }
 }

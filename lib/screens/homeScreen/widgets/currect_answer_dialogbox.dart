@@ -19,14 +19,18 @@ class CurrectAnswerDialogBox extends StatelessWidget {
             Text("Your answer is correct "),
             Padding(
               padding: EdgeInsets.only(top: 18.0),
+              //set correct answer to text
               child: Text("Answer is : ${_controller.uiAnswer.value} "),
             )
           ],
         ),
       ),
       actions: <Widget>[
+        //play again button
         TextButton(
+          //play again button click event
           onPressed: () {
+            // call calculate function and start timer function
             _controller.calculate();
             _controller.startTimer();
 

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:math_game/helper/Util.dart';
 import 'package:math_game/screens/homeScreen/controller/homeController.dart';
 
 class WrongAnswerDialogBox extends StatelessWidget {
@@ -19,18 +18,18 @@ class WrongAnswerDialogBox extends StatelessWidget {
             Text("Your answer is wrong "),
             Padding(
               padding: EdgeInsets.only(top: 18.0),
+              //show correct answer
               child: Text("Answer is : ${_controller.uiAnswer.value} "),
             )
           ],
         ),
       ),
       actions: <Widget>[
-        // TextButton(
-        //   onPressed: () => Navigator.pop(context, 'Cancel'),
-        //   child: const Text('Cancel'),
-        // ),
+        // alert dialog box play again button
         TextButton(
+          // alert dialog box play again button on press event
           onPressed: () {
+            // call calulate function and start timer function
             _controller.calculate();
             _controller.startTimer();
 

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:math_game/helper/Util.dart';
 import 'package:math_game/screens/homeScreen/controller/homeController.dart';
 
 class GameOverView extends StatelessWidget {
@@ -35,8 +34,11 @@ class GameOverView extends StatelessWidget {
           Container(
             width: 200,
             height: 50,
+            //playe aganin button
             child: ElevatedButton(
+                //playe aganin button click event
                 onPressed: () {
+                  // call calculate function and start timer function
                   _controller.calculate();
                   _controller.startTimer();
                 },
