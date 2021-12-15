@@ -44,6 +44,7 @@ class FirstScreen extends StatelessWidget {
                   top: 15,
                   bottom: 30,
                 ),
+                //Player name text form field
                 child: TextFormField(
                   controller: _firstScreenController.userNameController,
                   autofocus: false,
@@ -84,7 +85,7 @@ class FirstScreen extends StatelessWidget {
                     onPressed: () async {
                       //check is button already pressed if not call pressLoginButton function
                       _firstScreenController.isEnableSignUp.value
-                          ? pressLoginButton()
+                          ? await _firstScreenController.login()
                           // ignore: unnecessary_statements
                           : null;
                     },
@@ -110,9 +111,9 @@ class FirstScreen extends StatelessWidget {
     );
   }
 
-  pressLoginButton() async {
-    var _firstScreenController = Get.put(FirstScreenController());
-    //**Call login function */
-    await _firstScreenController.login();
-  }
+  // pressLoginButton() async {
+  //   var _firstScreenController = Get.put(FirstScreenController());
+  //   //**Call login function */
+  //   await _firstScreenController.login();
+  // }
 }

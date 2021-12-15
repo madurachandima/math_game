@@ -5,14 +5,14 @@ import 'package:get/get.dart';
 import 'package:math_game/helper/Util.dart';
 
 import 'package:math_game/screens/homeScreen/apiRequest/api_request.dart';
-import 'package:math_game/screens/homeScreen/business/OperaterImpl.dart';
+import 'package:math_game/screens/homeScreen/business/operator.dart';
 
 import 'package:math_game/screens/homeScreen/model/ResultModel.dart';
 import 'package:math_game/screens/homeScreen/model/playerDetailsModel.dart';
-
 import 'package:math_game/service/shared_preference.dart';
 
-class HomeController extends GetxController {
+class HomeController extends GetxController
+    with Operator, Utills, SharedPreference {
   var operaters = ["-", "/", "+", "x"];
   var numbers = [].obs;
   var operater = "".obs;
@@ -23,8 +23,9 @@ class HomeController extends GetxController {
 
   late Timer timer;
   var start = 10.obs;
-  OperaterImpl opreterImpl = new OperaterImpl();
-  Utills util = new Utills();
+  // Operater opreter = new Operater();
+  // Utills util = new Utills();
+  // var _sharedPreference = new SharedPreference();
 
   var authId = "";
   var playerId = "";
@@ -61,7 +62,10 @@ class HomeController extends GetxController {
     * Get player details from API 
     *@param authId 
     */
-    playerDetailModel.value = await new ApiRequest().getPlayerDetails(authId);
+    try {
+      playerDetailModel.value = await new ApiRequest().getPlayerDetails(authId);
+    } catch (e) {}
+
     /*
     * Get Bestplayers score from API 
     */
@@ -71,19 +75,18 @@ class HomeController extends GetxController {
   // calcula the values
   calculate() async {
     // generate random numbers
-    var randValue1 = util.generateRandomNumner(11, 110);
-    var randValue2 = util.generateRandomNumner(10, 150);
+    var randValue1 = generateRandomNumner(11, 110);
+    var randValue2 = generateRandomNumner(10, 150);
     // shuffle the operaters array
     operaters.shuffle();
     //get operater
-    operater.value = operaters.elementAt(util.generateRandomNumner(0, 3));
+    operater.value = operaters.elementAt(generateRandomNumner(0, 3));
 
     switch (operater.value) {
       case "-":
         try {
           // call substraction function store the return result on ResultModel type object
-          ResultModel resultModel =
-              opreterImpl.subtraction(randValue1, randValue2);
+          ResultModel resultModel = subtraction(randValue1, randValue2);
           // call setUiValues function for set values to UI
           // get value 1 , value2 and answer from resultModel
           setUiValues(
@@ -99,8 +102,7 @@ class HomeController extends GetxController {
       case "+":
         try {
           // call addition function and store the return result on ResultModel type object
-          ResultModel resultModel =
-              opreterImpl.addition(randValue1, randValue2);
+          ResultModel resultModel = addition(randValue1, randValue2);
           // call setUiValues function for set values to UI
           // get value 1 , value2 and answer from resultModel
           setUiValues(
@@ -116,8 +118,7 @@ class HomeController extends GetxController {
       case "/":
         try {
           // call division function and store the return result on ResultModel type object
-          ResultModel resultModel =
-              opreterImpl.division(randValue1, randValue2);
+          ResultModel resultModel = division(randValue1, randValue2);
 
           // call setUiValues function for set values to UI
           // get value 1 , value2 and answer from resultModel
@@ -133,8 +134,7 @@ class HomeController extends GetxController {
       case "x":
         try {
           // call multiplication function and store the return result on ResultModel type object
-          ResultModel resultModel =
-              opreterImpl.multiplication(randValue1, randValue2);
+          ResultModel resultModel = multiplication(randValue1, randValue2);
           // call setUiValues function for set values to UI
           // get value 1 , value2 and answer from resultModel
           setUiValues(
@@ -164,7 +164,7 @@ class HomeController extends GetxController {
 
     // generate twenty of randome numbers
     for (var i = 0; i < 20; i++) {
-      var number = util.generateRandomNumner(minValue, maxValue);
+      var number = generateRandomNumner(minValue, maxValue);
       //check if the number equals to the answer
       if (number != uiAnswer.value) {
         // if not add to the numbers array

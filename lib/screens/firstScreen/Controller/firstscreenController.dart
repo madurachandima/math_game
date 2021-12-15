@@ -6,11 +6,13 @@ import 'package:math_game/screens/firstScreen/models/LoginModel.dart';
 import 'package:math_game/screens/homeScreen/home.dart';
 import 'package:math_game/service/shared_preference.dart';
 
-class FirstScreenController extends GetxController {
+class FirstScreenController extends GetxController with SharedPreference {
   var userNameController = TextEditingController();
   var _googleSignIn = GoogleSignIn();
   LoginModel _loginModel = new LoginModel();
   var _apiRequest = ApiRequest();
+  // var _sharedPreferences = new SharedPreference();
+
   var _authId = "";
   var _playerId = "";
 
@@ -53,10 +55,11 @@ class FirstScreenController extends GetxController {
         await _apiRequest.getUserPublicIp();
 
         //* get user country from API
-        await _apiRequest.getUserLopcation();
+        await _apiRequest.getUserLocation();
 
         try {
-          /**
+          /*
+          *Post user details
          * @param _username
          * @param _authId
          * save user data

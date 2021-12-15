@@ -1,7 +1,7 @@
 import 'package:math_game/helper/Util.dart';
 import 'package:math_game/screens/homeScreen/model/ResultModel.dart';
 
-class OperaterImpl {
+class Operator {
   var answer = 0;
   Utills utill = new Utills();
 
@@ -21,7 +21,7 @@ class OperaterImpl {
         answer = value1 - value2;
         return new ResultModel(value1, value2, answer);
       } else {
-        // create while loop for retun value1 grater than value2
+        // create while loop for return value1 grater than value2
         while (value1 <= value2) {
           //genarate two random numbers
           value1 = utill.generateRandomNumner(20, 99);

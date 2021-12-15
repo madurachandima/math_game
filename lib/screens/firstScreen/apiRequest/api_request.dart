@@ -5,10 +5,9 @@ import 'package:math_game/const/apiConst.dart';
 import 'package:math_game/const/const.dart';
 import 'package:math_game/screens/firstScreen/models/CountryModel.dart';
 import 'package:math_game/screens/firstScreen/models/LoginModel.dart';
-import 'package:math_game/service/get_request.dart';
-import 'package:math_game/service/post_request.dart';
+import 'package:math_game/service/http_requests.dart';
 
-class ApiRequest {
+class ApiRequest extends HttpRequests {
   var _getCountryModel = CountryModel();
   var _publicIp = "";
 
@@ -28,7 +27,7 @@ class ApiRequest {
     }
   }
 
-  getUserLopcation() async {
+  getUserLocation() async {
     try {
       if (_publicIp != "") {
         var response = await getRequest(GET_USER_LOCATION_BY_IP + "$_publicIp");

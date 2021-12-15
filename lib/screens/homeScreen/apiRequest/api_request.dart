@@ -5,12 +5,13 @@ import 'package:math_game/const/apiConst.dart';
 import 'package:math_game/const/const.dart';
 import 'package:math_game/screens/homeScreen/controller/homeController.dart';
 import 'package:math_game/screens/homeScreen/model/playerDetailsModel.dart';
-import 'package:math_game/service/get_request.dart';
-import 'package:math_game/service/post_request.dart';
+import 'package:math_game/service/http_requests.dart';
+
 import 'package:math_game/service/shared_preference.dart';
 
-class ApiRequest {
+class ApiRequest extends HttpRequests {
   HomeController _homeController = Get.put(HomeController());
+  var _sharedPreference = new SharedPreference();
 
   /*
   *Get bestplayers details
@@ -58,9 +59,9 @@ class ApiRequest {
   postPlayerScore(authId, playerId, score) async {
     try {
       // get player name from shared_preference
-      var playerName = await getPlayerName();
+      var playerName = await _sharedPreference.getPlayerName();
       // get player country from shared_preference
-      var playerCountry = await getPlayerCountry();
+      var playerCountry = await _sharedPreference.getPlayerCountry();
 
       // create json object
       var data = jsonEncode({
@@ -97,7 +98,7 @@ class ApiRequest {
         "auth_id": "$authId",
       });
       // call post request function
-      var response = await postRequest(data, BASE_URL + "getplayersdd");
+      var response = await postRequest(data, BASE_URL + "getplayer");
       if (response.statusCode == 200) {
         return playerDetailsModelFromJson(response.body);
       } else if (response.statusCode == 404) {
